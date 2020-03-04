@@ -1,7 +1,7 @@
 const createModel = include('helpers/modelCreate');
 
 const name = 'Contact';
-const tableName = 'contact';
+const tableName = 'Contact';
 
 const selectableProps = [
     'id',

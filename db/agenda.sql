@@ -36,4 +36,5 @@ CREATE TABLE IF NOT EXISTS "Contact" (
 	PRIMARY KEY("id")
 );
 INSERT INTO "Contact" ("id","firstName","lastName","email","gender","birthDate","phoneNumber","address","role","notes","createdAt","updatedAt","deletedAt","deleted") VALUES ('cd95f47a-4d91-443a-a31b-12575347a47f','algo','algo','algo','algo','01/02/1998','algo','algo','algo','algo','algo',NULL,NULL,NULL);
+
 COMMIT;

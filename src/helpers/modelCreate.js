@@ -133,6 +133,7 @@ class ModelCreate {
     }
 
     async updateOne (filters, props) {
+        console.log({filters, props, transaction: this.transaction})
         delete props.id;
         const objectToSave = this.jsonToString(props);
         objectToSave.updatedAt = new Date();

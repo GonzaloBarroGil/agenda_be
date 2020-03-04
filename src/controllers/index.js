@@ -1,4 +1,5 @@
 module.exports = {
     ContactController: require('./contacts'),
-    StatusController: require('./status')
+    DepartmentController: require('./departments'),
+    StatusController: require('./status'),
 };

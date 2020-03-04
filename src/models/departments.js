@@ -5,6 +5,7 @@ const tableName = 'Department';
 
 const selectableProps = [
     'id',
+    'name',
     'description',
     'createdAt',
     'updatedAt',

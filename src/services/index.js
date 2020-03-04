@@ -1,1 +1,5 @@
-module.exports = {StatusService: require('./status')};
+module.exports = {
+    StatusService: require('./status'),
+    ContactService: require('./contacts'),
+    DepartmentService: require('./departments')
+};

@@ -133,7 +133,6 @@ class ModelCreate {
     }
 
     async updateOne (filters, props) {
-        console.log({filters, props, transaction: this.transaction})
         delete props.id;
         const objectToSave = this.jsonToString(props);
         objectToSave.updatedAt = new Date();
@@ -206,8 +205,6 @@ class ModelCreate {
             }
             return this.insertOne(props);
         } catch(err) {
-            // eslint-disable-next-line
-            console.log(filters, props);
             return false;
         }
     }

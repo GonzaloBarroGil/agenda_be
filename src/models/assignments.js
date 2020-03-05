@@ -1,9 +1,10 @@
 const createModel = include('helpers/modelCreate');
 
 const name = 'Assignment';
-const tableName = 'Assignment';
+const tableName = 'assignment';
 
 const selectableProps = [
+    'id',
     'contact',
     'department',
     'createdAt',

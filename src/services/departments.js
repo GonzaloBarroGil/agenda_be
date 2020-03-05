@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-const {stringify} = require('querystring');
 const {Department} = include('models');
 
 class DepartmentService{

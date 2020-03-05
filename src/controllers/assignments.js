@@ -1,12 +1,12 @@
 const head = require('lodash/head');
 const isEmpty = require('lodash/isEmpty');
 
-const { Department } = include('models');
+const { Assignment } = include('models');
 
-class DepartmentController{
+class AssignmentController{
     static async create(req, res, next) {
         try {
-            const result = await Department.insertOne(req.body);
+            const result = await Assignment.insertOne(req.body);
             res.send({
                 success: true,
                 result
@@ -15,12 +15,13 @@ class DepartmentController{
             next(err);
         }
     }
+
     static async fetch(req, res, next){
         try{
 
-            const departments = await Department.findAll();
+            const assignments = await Assignment.findAll();
 
-            res.send(departments);
+            res.send(assignments);
         }catch(err){
             next(err);
         }
@@ -28,10 +29,10 @@ class DepartmentController{
 
     static async fetchOne(req, res, next){
         try{
-            const contact = await Department.findById(req.params.id);
+            const contact = await Assignment.findById(req.params.id);
 
             if(isEmpty(contact)){
-                return res.status(404).send({code: 'DEPARTMENT_NOT_FOUND'});
+                return res.status(404).send({code: 'ASSIGNMENT_NOT_FOUND'});
 
             }
 
@@ -43,7 +44,7 @@ class DepartmentController{
 
     static async save(req, res, next) {
         try {
-            const result = await Department.updateOne({id: req.params.id}, req.body);
+            const result = await Assignment.updateOne({id: req.params.id}, req.body);
             res.send({
                 success: true,
                 result
@@ -55,7 +56,7 @@ class DepartmentController{
 
     static async delete(req, res, next){
         try{
-            const result = await Department.deletedOne({id: req.params.id});
+            const result = await Assignment.deletedOne({id: req.params.id});
             res.send({
                 success: true,
                 result
@@ -68,4 +69,4 @@ class DepartmentController{
     }
 }
 
-module.exports = DepartmentController;
+module.exports = AssignmentController;

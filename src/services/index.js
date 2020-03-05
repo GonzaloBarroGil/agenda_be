@@ -1,5 +1,6 @@
 module.exports = {
-    StatusService: require('./status'),
+    AssignmentService: require('./assignments'),
     ContactService: require('./contacts'),
-    DepartmentService: require('./departments')
+    DepartmentService: require('./departments'),
+    StatusService: require('./status')
 };

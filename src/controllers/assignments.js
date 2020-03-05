@@ -1,4 +1,5 @@
-const {isEmpty, head} = require('lodash');
+const head = require('lodash/head');
+const isEmpty = require('lodash/isEmpty');
 
 const { Assignment } = include('models');
 
@@ -14,6 +15,7 @@ class AssignmentController{
             next(err);
         }
     }
+
     static async fetch(req, res, next){
         try{
 
@@ -30,9 +32,7 @@ class AssignmentController{
             const contact = await Assignment.findById(req.params.id);
 
             if(isEmpty(contact)){
-                return res.status(404).send({                    
-                    code: 'ASSIGNMENT_NOT_FOUND',
-                });
+                return res.status(404).send({code: 'ASSIGNMENT_NOT_FOUND'});
 
             }
 

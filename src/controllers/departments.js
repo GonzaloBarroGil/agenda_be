@@ -1,6 +1,5 @@
 const head = require('lodash/head');
-const map = require('lodash/map');
-const pick = require('lodash/pick');
+const isEmpty = require('lodash/isEmpty');
 
 const { Department } = include('models');
 
@@ -16,19 +15,33 @@ class DepartmentController{
             next(err);
         }
     }
-
     static async fetch(req, res, next){
         try{
 
-            const Department = Department.findAll();
+            const departments = await Department.findAll();
 
-            res.send(Department);
+            res.send(departments);
         }catch(err){
             next(err);
         }
     }
 
-    static async save(req, res, next){
+    static async fetchOne(req, res, next){
+        try{
+            const contact = await Department.findById(req.params.id);
+
+            if(isEmpty(contact)){
+                return res.status(404).send({code: 'DEPARTMENT_NOT_FOUND'});
+
+            }
+
+            res.send(head(contact));
+        }catch(err){
+            next(err);
+        }
+    }
+
+    static async save(req, res, next) {
         try {
             const result = await Department.updateOne({id: req.params.id}, req.body);
             res.send({
@@ -38,7 +51,6 @@ class DepartmentController{
         } catch (err) {
             next(err);
         }
-            
     }
 
     static async delete(req, res, next){
@@ -54,8 +66,6 @@ class DepartmentController{
             next(err);
         }
     }
-
-
 }
 
 module.exports = DepartmentController;

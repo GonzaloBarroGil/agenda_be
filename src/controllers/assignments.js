@@ -16,6 +16,17 @@ class AssignmentController{
         }
     }
 
+    static async fetchEagerLoaded(req, res, next){
+        try{
+
+            const assignments = await Assignment.fetchEagerLoaded();
+
+            res.send(assignments);
+        }catch(err){
+            next(err);
+        }
+    }
+
     static async fetch(req, res, next){
         try{
 

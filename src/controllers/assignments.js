@@ -16,7 +16,7 @@ class AssignmentController{
         }
     }
 
-    static async fetchEagerLoaded(req, res, next){
+    static async fetch(req, res, next){
         try{
 
             const assignments = await Assignment.fetchEagerLoaded();
@@ -27,7 +27,8 @@ class AssignmentController{
         }
     }
 
-    static async fetch(req, res, next){
+    // Fetch en desactualizado por falta de información
+    /*static async fetch(req, res, next){
         try{
 
             const assignments = await Assignment.findAll();
@@ -36,7 +37,7 @@ class AssignmentController{
         }catch(err){
             next(err);
         }
-    }
+    }*/
 
     static async fetchOne(req, res, next){
         try{

@@ -1,6 +1,5 @@
 const createModel = include('helpers/modelCreate');
 
-const ORDER_BY = [];
 const name = 'Assignment';
 const tableName = 'assignment';
 
@@ -35,13 +34,13 @@ class AssignmentModel extends createModel {
         });
     }
 
-    fetchEagerLoaded (columns = innerProps, orderBy = ORDER_BY) {
+    fetchEagerLoaded (filters = {}) {
         return this.knex
-            .select(columns)
+            .select(innerProps)
             .from(this.tableName)
             .innerJoin('contact', 'assignment.contact', 'contact.id')
             .innerJoin('department', 'assignment.department', 'department.id')
-            .orderBy(orderBy)
+            .where(filters)
             .timeout(this.timeout);
     }
 }

@@ -14,6 +14,7 @@ const selectableProps = [
 ];
 
 const innerProps = [
+    'assignment.deleted',
     'assignment.id',
     'firstName',
     'lastName',
@@ -34,7 +35,7 @@ class AssignmentModel extends createModel {
         });
     }
 
-    fetchEagerLoaded (filters = {}) {
+    fetchEagerLoaded (filters = {'assignment.deleted': 0}) {
         return this.knex
             .select(innerProps)
             .from(this.tableName)

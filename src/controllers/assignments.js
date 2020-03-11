@@ -68,11 +68,13 @@ class AssignmentController{
 
     static async delete(req, res, next){
         try{
-            const result = await Assignment.deletedOne({id: req.params.id});
+            const result = await Assignment.deletedOne(req.params.id);
+
+            console.log(req.params.id);
+
             res.send({
                 success: true,
                 result
-
             });
 
         } catch(err){

@@ -19,13 +19,25 @@ class AssignmentController{
     static async fetch(req, res, next){
         try{
 
-            const assignments = await Assignment.findAll();
+            const assignments = await Assignment.fetchEagerLoaded();
 
             res.send(assignments);
         }catch(err){
             next(err);
         }
     }
+
+    // Fetch en desactualizado por falta de información
+    /*static async fetch(req, res, next){
+        try{
+
+            const assignments = await Assignment.findAll();
+
+            res.send(assignments);
+        }catch(err){
+            next(err);
+        }
+    }*/
 
     static async fetchOne(req, res, next){
         try{
@@ -56,11 +68,13 @@ class AssignmentController{
 
     static async delete(req, res, next){
         try{
-            const result = await Assignment.deletedOne({id: req.params.id});
+            const result = await Assignment.deletedOne(req.params.id);
+
+            console.log(req.params.id);
+
             res.send({
                 success: true,
                 result
-
             });
 
         } catch(err){

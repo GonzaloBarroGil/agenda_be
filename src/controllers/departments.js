@@ -28,14 +28,14 @@ class DepartmentController{
 
     static async fetchOne(req, res, next){
         try{
-            const contact = await Department.findById(req.params.id);
+            const department = await Department.findById(req.params.id);
 
-            if(isEmpty(contact)){
+            if(isEmpty(department)){
                 return res.status(404).send({code: 'DEPARTMENT_NOT_FOUND'});
 
             }
 
-            res.send(head(contact));
+            res.send(head(department));
         }catch(err){
             next(err);
         }

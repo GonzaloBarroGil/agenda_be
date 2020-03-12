@@ -1,4 +1,5 @@
 const createModel = include('helpers/modelCreate');
+const assign = require('lodash/assign');
 
 const name = 'Assignment';
 const tableName = 'assignment';
@@ -13,6 +14,20 @@ const selectableProps = [
     'deleted'
 ];
 
+const innerProps = [
+    'assignment.deleted',
+    'assignment.id',
+    'firstName',
+    'lastName',
+    'contact.address',
+    'role',
+    'name',
+    'department.address as departmentAddress',
+    'description'
+];
+
+const defaultFilters = {'assignment.deleted': 0};
+
 class AssignmentModel extends createModel {
     constructor (props) {
         super({
@@ -21,6 +36,16 @@ class AssignmentModel extends createModel {
             tableName,
             selectableProps
         });
+    }
+
+    fetchEagerLoaded (filters = defaultFilters) {
+        return this.knex
+            .select(innerProps)
+            .from(this.tableName)
+            .innerJoin('contact', 'assignment.contact', 'contact.id')
+            .innerJoin('department', 'assignment.department', 'department.id')
+            .where(filters)
+            .timeout(this.timeout);
     }
 }
 

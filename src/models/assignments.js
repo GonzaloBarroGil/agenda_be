@@ -1,4 +1,5 @@
 const createModel = include('helpers/modelCreate');
+const assign = require('lodash/assign');
 
 const name = 'Assignment';
 const tableName = 'assignment';
@@ -25,6 +26,8 @@ const innerProps = [
     'description'
 ];
 
+const defaultFilters = {'assignment.deleted': 0};
+
 class AssignmentModel extends createModel {
     constructor (props) {
         super({
@@ -35,7 +38,7 @@ class AssignmentModel extends createModel {
         });
     }
 
-    fetchEagerLoaded (filters = {'assignment.deleted': 0}) {
+    fetchEagerLoaded (filters = defaultFilters) {
         return this.knex
             .select(innerProps)
             .from(this.tableName)

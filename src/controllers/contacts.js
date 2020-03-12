@@ -18,9 +18,10 @@ class ContactController{
     }
     static async fetch(req, res, next){
         try{
-
-            const contacts = await Contact.findAll();
-
+            console.log(req.query);
+            const contacts = isEmpty(req.query)
+                ? await Contact.findAll()
+                : await Contact.find(req.query);
             res.send(contacts);
         }catch(err){
             next(err);
@@ -37,6 +38,16 @@ class ContactController{
             }
 
             res.send(head(contact));
+        }catch(err){
+            next(err);
+        }
+    }
+
+    static async fetchWithFilters(req, res, next){
+        try{
+            const contacts = await Contact.findAll({firstName: req.query.firstName});
+            console.log(req.params);
+            res.send(contacts);
         }catch(err){
             next(err);
         }

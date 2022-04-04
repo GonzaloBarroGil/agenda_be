@@ -8,6 +8,8 @@ module.exports = router => {
         .put(ContactController.save)
         .delete(ContactController.delete)
         .get(ContactController.fetchOne);
+    router.route('/filterByName')
+        .get(ContactController.fetchWithFilters);
 
     return router;
 };

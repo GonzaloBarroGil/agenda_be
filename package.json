@@ -26,7 +26,8 @@
     "lint": "gulp eslint",
     "build": "gulp build",
     "db:migrate": "npx knex migrate:latest",
-    "db:seed": "npx knex seed:run"
+    "db:seed": "npx knex seed:run",
+    "dev:nodemon": "nodemon index.js"
   },
   "directories": {
     "test": "./test"
